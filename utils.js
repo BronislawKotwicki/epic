@@ -9,9 +9,9 @@ const cfg = {
     }
 }
 
-export const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-export const getResponse = async (url, method, body, xAuth) => {
+const getResponse = async (url, method, body, xAuth) => {
     return await fetch
     (
         url,
@@ -27,16 +27,23 @@ export const getResponse = async (url, method, body, xAuth) => {
     )
 }
 
-export const getEvent = async (api, xAuth) => {
+const getEvent = async (api, xAuth) => {
     var res = await getResponse(`${api}/event`, "GET", null, xAuth)
     var json = await res.json()
     if(json.userAuth == false) throw `Unauthenticated ...`
     return json
 }
 
-export const getCfg = type => {
+const getCfg = type => {
     return {
         "api": type == "dota" ? cfg.epicloot.api : cfg.epicdrop.api,
         "xAuth": type == "dota" ? cfg.epicloot.xAuth : cfg.epicdrop.xAuth
     }
+}
+
+module.exports = {
+    sleep,
+    getResponse,
+    getEvent,
+    getCfg
 }

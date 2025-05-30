@@ -1,4 +1,4 @@
-import {getResponse, getEvent, sleep, getCfg} from './utils.js'
+const {getResponse, getEvent, sleep, getCfg} = require("./utils.js")
 
 const getItem = async (api, xAuth) => {
     var res = await getResponse(`${api}/event/game/getItem`, "POST", null, xAuth)
@@ -11,7 +11,6 @@ const getItem = async (api, xAuth) => {
 
 const start = async (api, xAuth, item, drops) => {
     var body =  JSON.stringify({type: "UNBROKEN", item: item, drops: drops})
-    console.log(body)
     var res = await getResponse(`${api}/event/game/workbench/start`, "POST", body, xAuth)
     var json = await res.json()
     if(!json.success) {
@@ -35,7 +34,6 @@ const main = async type => {
         var eventJson = await getEvent(api, xAuth)
         var inventory = eventJson.game.inventory
         var lockedSlots = inventory.length
-        console.log(lockedSlots)
         if(eventJson.game.user.unlockedSlots == lockedSlots) {
             while(lockedSlots) {
                 var startItem = inventory.shift()

@@ -1,4 +1,4 @@
-import {getResponse, getEvent, sleep, getCfg} from './utils.js'
+const {getResponse, getEvent, sleep, getCfg} = require("./utils.js")
 
 const open_box = async (api, xAuth) => {
     var body = JSON.stringify({id: "box-1132fa56-1032-4445-bca5-57f0fe445daa"})

@@ -1,4 +1,4 @@
-import {getResponse, getEvent, sleep, getCfg} from './utils.js'
+const {getResponse, getEvent, sleep, getCfg} = require("./utils.js")
 
 const getFree = async (api, xAuth) => {
     var res = await getResponse(`${api}/event/getFree`, "POST", null, xAuth)
