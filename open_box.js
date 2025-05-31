@@ -22,15 +22,15 @@ const main = async ([type, count]) => {
         var gift = (await open_box(api, xAuth)).gift
         tries = gift.type == "GAME_LIVE" ? tries + Number(gift.value) - COST : tries - COST
         var giftTitle = gift.title
-        var giftIndex = gifts.findIndex(el => el.title === giftTitle)
-        if(!giftIndex) {
+        var giftIndex = gifts.findIndex(el => el.title == giftTitle)
+        if(giftIndex != -1) {
             gifts[giftIndex].count = gifts[giftIndex].count + 1
         } else {
             gifts.push({title: giftTitle, count: 1})
         }
         giftCount += 1
         if(tries < COST || count ? giftCount == count : false) break
-        await sleep(1500)
+        await sleep(500)
     }
     console.log(`${new Date()} ... open_box_${type} ... ${giftCount} ...`, gifts)
     console.log(`Total Gift ... ${giftCount} ...`)
