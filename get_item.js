@@ -38,7 +38,7 @@ const main = async type => {
             while(lockedSlots) {
                 var startItem = inventory.shift()
                 var startItemPrice = startItem.item.price
-                var endItem = (await items(api, xAuth, startItemPrice * 30))[0]
+                var endItem = (await items(api, xAuth, startItemPrice * 6))[0]
                 var json = await start(api, xAuth, endItem.id, [startItem.id])
                 console.log(`${new Date()} ... upgrade_${type} ${startItemPrice}/${endItem.price} ... ${json.upgraded} ...`)
                 lockedSlots = lockedSlots - 1
