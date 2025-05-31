@@ -33,6 +33,7 @@ const main = async ([type, count]) => {
         await sleep(1500)
     }
     console.log(`${new Date()} ... open_box_${type} ... ${giftCount} ...`, gifts)
+    console.log(`Total Gift ... ${giftCount} ...`)
 }
 
 main(process.argv.slice(2))
